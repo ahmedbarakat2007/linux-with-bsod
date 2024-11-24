@@ -284,6 +284,40 @@ static void panic_other_cpus_shutdown(bool crash_kexec)
  *
  *	This function never returns.
  */
+
+
+/*
+
+Author : Ahmed Barakat
+Github : ahmedbarakat2007
+Licence : GPL
+
+I Made BSOD for Linux 
+Yippppeeeeeeeeeeeee
+
+*/
+static void color(void){
+	struct vc_data *vc;
+	unsigned short *pos;
+	unsigned int rows, cols;
+	int row, col;
+
+	vc = vc_cons[fg_console].d; 
+
+	rows = vc->vc_rows;
+	cols = vc->vc_cols;
+	//redraw_screen(vc, 0); 
+
+	pos = (unsigned short *)(vc->vc_origin); 
+	for (row = 0; row < rows; row++) {
+    	for (col = 0; col < cols; col++) {
+        		pos[col] = (pos[col] & 0x0FFF) | (1 << 12);
+    		}
+    	pos += vc->vc_size_row / 2;
+	}
+
+
+}
 void panic(const char *fmt, ...)
 {
 	static char buf[1024];
@@ -344,8 +378,9 @@ void panic(const char *fmt, ...)
 
 	if (len && buf[len - 1] == '\n')
 		buf[len - 1] = '\0';
-
-	pr_emerg("Kernel panic - not syncing: %s\n", buf);
+	
+	color();
+	pr_emerg("Kernel Bruh Moment - not syncing: %s\n", buf);
 #ifdef CONFIG_DEBUG_BUGVERBOSE
 	/*
 	 * Avoid nested stack-dumping if a panic occurs during oops processing
@@ -454,8 +489,9 @@ void panic(const char *fmt, ...)
 #if defined(CONFIG_S390)
 	disabled_wait();
 #endif
-	pr_emerg("---[ end Kernel panic - not syncing: %s ]---\n", buf);
-
+	color();
+	pr_emerg("---[ end Kernel Bruh Moment - not syncing: %s ]---\n", buf);
+	color();
 	/* Do not scroll important messages printed above */
 	suppress_printk = 1;
 
