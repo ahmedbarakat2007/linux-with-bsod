@@ -490,7 +490,28 @@ void panic(const char *fmt, ...)
 	disabled_wait();
 #endif
 	color();
+	printk("              a8888b.");
+	printk("             8P'YP'Y88");
+	printk("             8|X||X|88");
+	printk("             8'    .88");
+	printk("             8`._.' Y8.");
+	printk("            d/      `8b.");
+	printk("           dP   .    Y8b.");
+	printk("          d8:'  '  `::88b");
+	printk("         d8'         'Y88b");
+	printk("         :8P    '      :888");
+	printk("         8a.   :     _a88P");
+	printk("        ._/'Yaa_:   .| 88P|\n");
+	printk("        |    YP'    `| 8P  `.\n");
+	printk("       /      .___.d|    .'\n");
+	printk("       `--..__)8888P`._.'\n");
 	pr_emerg("---[ end Kernel Bruh Moment - not syncing: %s ]---\n", "yeaaa, idk what the f*ck is going on :p");
+	printk("\n");
+	printk("\n");
+	printk("\n");
+	printk("\n");
+	printk("\n");
+	printk("\n");
 	color();
 	/* Do not scroll important messages printed above */
 	suppress_printk = 1;
